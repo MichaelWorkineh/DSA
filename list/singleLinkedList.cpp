@@ -19,10 +19,13 @@ void delete_beg();
 void delete_back();
 void delete_at(int x);
 void search_for(int x);
+void clear();
 
 int main(){
     while(1==1){
         mainMenu();
+        cout<<endl<<endl;
+        cout<<"==========================================================================================="<<endl<<endl<<endl;;
     }
     return 0;
 }
@@ -41,6 +44,7 @@ void mainMenu(){
     switch (choice)
     {
     case 1:
+        clear();
         input();
         break;
     case 2:
@@ -239,4 +243,32 @@ void search_for(int x){
         i++;
     } 
     cout<<x<<" not found"<<endl;
+}
+
+void clear(){
+    if(start == NULL){
+        cout<<"Already empty!"<<endl;
+        return;
+    }
+
+    else{
+        student * temp1 = start, * temp2, *temp3;
+        while(temp1->next != NULL){
+            temp1 = temp1->next;
+        }
+        do{
+            temp2 = start;
+            while(temp2->next != temp1){
+             temp2 = temp2->next;
+            }
+            temp3 = temp1;
+            temp1 = temp2;
+            delete temp3;
+        }
+        while(temp1 != start);
+        temp2 = temp1;
+        temp2 = NULL;
+        delete temp2;
+        cout<<"cleared!"<<endl;
+    }
 }
