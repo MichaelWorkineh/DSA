@@ -6,7 +6,7 @@ struct student{
     int age;
     student * next;
 };
-student * start = NULL, * p = new student;
+student * start = NULL;
 
 void mainMenu();
 void input ();

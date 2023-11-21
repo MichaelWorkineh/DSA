@@ -1,99 +1,114 @@
 #include <iostream>
-
 using namespace std;
 
-struct student{
-    int name;
-    student *n;
-    student *p;
+struct student
+{
+    int age;
+    student * next;
+    student * prev;
 };
 
-void push_forward(int x , student * start );
-void push_back(int x , student * start );
-void display_forward (student * start );
-void delete_beg (student * start);
-void delete_back(student * start);
+student * start = NULL;
+
+void initialize();
+void insert_beg(student * x);
+void display_inc();
+void display_dec();
+void insert_end(student * x);
+void insert_at(int position, student * x);
 
 int main(){
-
-    student list;
-    student * start = &list;
-    //display_forward(start);
-    push_forward(2,start);
-    push_back(2,start);
-    //display_forward(start);
+    initialize();
+    display_inc();
+    student * x;
+    cin>>x->age;
+    insert_at(3,x);
+    display_dec();
     return 0;
 }
 
-void push_forward(int x , student * start ){
-    student node;
-    node.name = x;
-    if(start == NULL){
-        start = &node;
-        node.p = NULL;
-        node.n = NULL;
-        return;
-    }
-    else{
-        student *temp;
-        temp = start;
-        start = &node;
-        node.n = temp;
-        cout<<temp->name<<endl;
+void initialize(){
+    int elementNum;
+    cin>>elementNum;
+    for(int i =0; i<elementNum; i++){
+        student * x = new student;
+        cin>>x->age;
+        insert_end(x);
     }
 }
 
-void push_back(int x, student * start ){
-    student * temp1= start;
-    student node;
-    node.name = x;
+void insert_beg(student * x){
     if(start == NULL){
-        start = &node;
-        node.p = NULL;
-        node.n = NULL;
-        return;
+        start = x;
+        x->prev = NULL;
+        x->next = NULL;
     }
-    else{
-        while(temp1->n!=NULL){
-            temp1 = temp1->n;
-        }
-        temp1->n = &node;
-        node.p = temp1;
-        node.n = NULL;
-        cout<<temp1->n<<endl;
-    }
-}
-
-void display_forward (student * start ){
-    if(start == NULL){
-        cout<<"It is empty"<<endl;
-        return;
-    }
-
     else{
         student * temp = start;
-        while(temp != NULL){
-            cout<<(*temp).name<<" ";
-            temp = temp ->n;
+        start = x;
+        x->prev = NULL;
+        x->next = temp;
+        temp->prev = x;
+    }
+}
+
+void insert_end(student * x){
+    if(start == NULL){
+        start = x;
+        x->next = NULL;
+        x->prev = NULL;
+    }
+    else{
+        student * temp = start;
+        while (temp->next != NULL)
+        {
+            temp = temp->next;
         }
-        cout<<endl;
+        temp->next = x;
+        x->prev = temp;
+        x->next = NULL;
+        
     }
 }
 
-void delete_beg (student * start){
-    student * temp = start;
-    start = start->n;
-    delete temp;
+void insert_at(int position, student * x){
+    if(start == NULL){
+        insert_end(x);
+    }
+    else if (position == 1)
+        insert_beg(x);
+    else{
+        student * temp1 = start;
+        for(int i=1; i<position-1; i++){
+            temp1 = temp1->next;
+        }
+        student * temp2 = temp1->next;
+        temp1->next = x;
+        x->prev = temp1;
+        x->next = temp2;
+        temp2->prev = x;
+    }
 }
 
-void delete_back(student * start){
+void display_inc(){
     student * temp = start;
-    while (temp->n->n!=NULL)
+    while(temp != NULL){
+        cout<<temp->age<<" ";
+        temp = temp->next;
+    }
+}
+
+void display_dec(){
+    student * temp = start;
+    while (temp->next != NULL)
     {
-        temp = temp->n;
+        temp = temp->next;
     }
-    student * temp2 = temp->n;
-    temp -> n = NULL;
-    delete temp2;
-    delete temp;
+    
+    while (temp != NULL)
+    {
+        cout<<temp->age<<" ";
+        temp = temp->prev;
+    }
+    
 }
