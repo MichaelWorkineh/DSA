@@ -22,27 +22,78 @@ void delete_at(int x);
 void search_for(int x);
 
 int main(){
-    initialize();
-    display_inc();
-    cout<<endl;
-    /*student * x;
-    cin>>x->age;
-    insert_at(3,x);
-    delete_beg();
-    display_dec();
-    cout<<endl;
-    delete_end();
-    display_inc();
-   delete_at(3);
-   display_inc();
-   */
-    search_for(5);
-    search_for(20);
+    int choice;
+    while(1==1){
+        cout<<endl<<"Menu: "<<endl;
+        cout<<"1. intialize"<<endl;
+        cout<<"2. insert at the begining"<<endl;
+        cout<<"3. display in increase order"<<endl;
+        cout<<"4. display in decrease oreder"<<endl;
+        cout<<"5. insert at the end of list"<<endl;
+        cout<<"6. random insert in the middle (random insertion)"<<endl;
+        cout<<"7. delete at the begining"<<endl;
+        cout<<"8. delete at the end"<<endl;
+        cout<<"9. delete at the middle (random insertion)"<<endl;
+        cout<<"10. search for a value"<<endl;
+        cout<<"11. Exit"<<endl;
+        cin>>choice;
+        student* y;
+        int position, value;
+        switch(choice){
+            case 1:
+                initialize();
+                break;
+            case 2:
+                cout<<"enter a value"<<endl;
+                cin>>y->age;
+                insert_beg(y);
+                break;
+            case 3:
+                display_inc();
+                break;
+            case 4:
+                display_dec();
+                break;
+            case 5:
+                cout<<"enter a value"<<endl;
+                cin>>y->age;
+                insert_end(y);
+                break;
+            case 6:
+                cout<<"enter position"<<endl;
+                cin>>position;
+                cout<<"enter the value"<<endl;
+                cin>>y->age;
+                insert_at(position, y);
+                break;
+            case 7:
+                delete_beg();
+                break;
+            case 8:
+                delete_end();
+                break;
+            case 9:
+                cout<<"Enter the position"<<endl;
+                cin>>position;
+                delete_at(position);
+                break;
+            case 10:
+                cout<<"Enter value you are looking for"<<endl;
+                cin>>value;
+                search_for(value);
+                break;
+            case 11:
+                return 0;
+            default:
+                cout<<"Wrong input!"<<endl;
+        }
+    }
     return 0;
 }
 
 void initialize(){
     int elementNum;
+    cout<<"enter the  number of elements"<<endl;
     cin>>elementNum;
     for(int i =0; i<elementNum; i++){
         student * x = new student;

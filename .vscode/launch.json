@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/worki/Documents/GitHub/DSA/list",
-      "program": "c:/Users/worki/Documents/GitHub/DSA/list/build/Debug/outDebug",
+      "cwd": "c:/Users/worki/Documents/GitHub/DSA/sorting",
+      "program": "c:/Users/worki/Documents/GitHub/DSA/sorting/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
